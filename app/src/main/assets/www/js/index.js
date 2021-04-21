@@ -63,42 +63,31 @@ function searchQr() {
     );
 }
 
+////////////////geolocation
+        // onSuccess Callback
+        // This method accepts a Position object, which contains the
+        // current GPS coordinates
+        //
+        var onSuccess = function(position) {
+            alert('Latitude: '          + position.coords.latitude          + '\n' +
+                  'Longitude: '         + position.coords.longitude         + '\n' +
+                  'Altitude: '          + position.coords.altitude          + '\n' +
+                  'Accuracy: '          + position.coords.accuracy          + '\n' +
+                  'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+                  'Heading: '           + position.coords.heading           + '\n' +
+                  'Speed: '             + position.coords.speed             + '\n' +
+                  'Timestamp: '         + position.timestamp                + '\n');
+        };
 
+        // onError Callback receives a PositionError object
+        //
+        function onError(error) {
+            alert('code: '    + error.code    + '\n' +
+                  'message: ' + error.message + '\n');
+        }
 
+        function geolocation() {
+            console.log('geolocation!');
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        }
 
-//function startScan() {
-//    cordova.plugins.barcodeScanner.scan(
-//        function re (result) {
-//            //바코드가 읽힌 결과 확인
-//            /*
-//            var s = "Result: " + result.text + "<br/>" +
-//            "Format: " + result.format + "<br/>" +
-//            "Cancelled: " + result.cancelled;
-//            */
-//            //바코드 읽은 결과를 실제 browser에 띄우기
-//             var ref = window.open(result.text, '_self', 'location=no');
-//             ref.addEventListener('loadstart', function(event) {
-//                 var urlSuccessPage = result.txt;
-//                 if (event.url == urlSuccessPage) {
-//                 ref.close();
-//                 }
-//             });
-//            alert('test');
-//        },
-//        function (error) {
-//            alert("Scanning failed: " + error);
-//        }
-//    );
-//}
-
-// cordova.plugins.barcodeScanner.scan(
-//      function (result) {
-//          alert("A barcode has been scanned \n" +
-//                "Result: " + result.text + "\n" +
-//                "Format: " + result.format + "\n" +
-//                "Cancelled: " + result.cancelled);
-//      },
-//      function (error) {
-//          alert("Scanning failed: " + error);
-//      }
-// );
